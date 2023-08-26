@@ -1,0 +1,8 @@
+name,full_name,m_wheel,m_coin,R_coin,d_coin,r_roll,theta_1,theta_2,Inertia File,name for figure,notes
+Michelin 4575r16,"Trispoke with Black FMB tire, 20mm width",1.1,0.0594,0.01,0.26,0.235,45,30,HED_FMB20B,HED trispoke with FMB 20mm,
+Michelin 44-406,"Trispoke with Black FMB tire, 25mm width",0.58,0.032,0.01,0.19,0.244,45,30,HED_FMB25,HED trispoke with FMB 25mm,inflating valve was taped up
+Greenspeed Scorcher,"Trispoke with Black FMB tire, 25mm width, tested by calvin",0.8,0.1725,0.121,0.0565,0.3083,45,30,HED_FMB25,HED trispoke with FMB 25mm,
+Vittoria Corsa Open,Aero_VelocityA23_GP4000Custom,1.275,0.1814,0.121,0.3,0.308601435,45,30,Velocity4000C_B,Velocity A23mm rim with Custom Cont.,
+Drum,Drum,65.9,2.5,0.1,0.5,0.65,45,30,,,
+Samplewheel 29,,1,1,0.1,0.5,0.3,45,30,,,
+Grandprix,,1.1,0.117,0.1,0.5,0.5,45,30,,,
