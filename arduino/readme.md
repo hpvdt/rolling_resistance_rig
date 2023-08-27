@@ -6,6 +6,10 @@ The most recent version of the system (`rolling_resistance`) uses digital sensor
 
 None of these sketches have any dependancies outside of the stock Arduino-provided libraries.
 
+## Saving the Data
+
+The Arduino will not save any of the data, it is simply responsible for streaming it to the host computer to be viewed over serial. To save the data one must either use some program to log incoming serial data, or copy the entire contents of the serial viewer window into a text file to make a comma separated file (`.csv`) or Excel workbook.
+
 ## Folder Breakdown
 
 - `rolling_resistance` - Active system sketch. **USE THIS!**

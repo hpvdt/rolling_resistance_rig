@@ -2,7 +2,7 @@
 
 One of the most crucial aspects of our land vehicles is the study of rolling resistance and our pursuit of reducing it. To this end the team has constucted a rolling resistance rig (_RRR_) to characterize different wheels. This repository serves as **the definitive** collection of information related to the RRR and its tests: especially the sensor system design and data processing. 
 
-The general principle of the RRR is that there is a large drum which acts as the riding surface for the wheel and is spun up to speed by an electric motor to simulate speeds of over 50 km/h. The wheel under test is installed above the wheel and is loaded to a similar level to the expected vehicle load prior to the drum getting spun up. Once the desired speed is achieved by the system, the power to the drum is cut and the drum/wheel combo is left to slow down by dissipating power primarily through their own rolling resistances.
+The general principle of the RRR is that there is a large drum which acts as the riding surface for the wheel and is spun up to speed by an electric motor to simulate speeds of over 80 km/h. The wheel under test is installed above the wheel and is loaded to a similar level to the expected vehicle load prior to the drum getting spun up. Once the desired speed is achieved by the system, the power to the drum is cut and the drum/wheel combo is left to slow down by dissipating power primarily through their own rolling resistances.
 
 During this slowdown the rotational period of each part is monitored and recorded over serial to then be analyzed and derive a rolling resistance for the wheel being tested. This processing is performed after the experiment is concluded in MATLAB.
 
