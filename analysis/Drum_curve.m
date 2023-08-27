@@ -6,17 +6,17 @@ drum_radius = 4.709/(2*pi);
 
 %Plots drum power curves
 
-aeroFileL1 = ['Michelin 4575r16 - Separate - Left - 60psi ' '.xlsx'];
-aeroFileR1 = ['Michelin 4575r16 - Separate - Right- 60psi ' '.xlsx'];
+aeroFileL1 = ['Michelin 4575r16 - Separate - Left - 60psi.xlsx'];
+aeroFileR1 = ['Michelin 4575r16 - Separate - Right - 60psi.xlsx'];
 
-aeroFileL2 = ['Michelin 44-406 - Separate - Left - 80psi ' '.xlsx'];
-aeroFileR2 = ['Michelin 44-406 - Separate - Right - 80psi ' '.xlsx'];
+aeroFileL2 = ['Michelin 44-406 - Separate - Left - 80psi.xlsx'];
+aeroFileR2 = ['Michelin 44-406 - Separate - Right - 80psi.xlsx'];
 
 aeroFileL3 = ['Green - Scorcher - Separate - Left - 80 psi.xlsx'];
 aeroFileR3 = ['Green - Scorcher - Separate - Left - 80 psi.xlsx'];
 
-% aeroFileL3 = [name_wheel ' - Separate - ' 'Left- ' '50psi ' '.xlsx'];
-% aeroFileR3 = [name_wheel ' - Separate - ' 'Right- ' '50psi ' '.xlsx'];
+% aeroFileL3 = [name_wheel ' - Separate - Left - 50psi.xlsx'];
+% aeroFileR3 = [name_wheel ' - Separate - Right - 50psi.xlsx'];
 
 drum_L = [{aeroFileL1}, {aeroFileL2}, {aeroFileL3}];
 drum_R = [{aeroFileR1}, {aeroFileR2}, {aeroFileR3}];

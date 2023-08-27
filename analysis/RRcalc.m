@@ -107,8 +107,8 @@ for i = 1:length(test_tires)
         
         % Compute power of full coastdown
 
-        dataFileL = [Tire_name_list{tire_ind} ' - Contact - ' 'Left- ' int2str(test_pressures(c)) 'psi ' '.xlsx'];
-        dataFileR = [Tire_name_list{tire_ind} ' - Contact - ' 'Right- ' int2str(test_pressures(c)) 'psi ' '.xlsx']; 
+        dataFileL = [Tire_name_list{tire_ind} ' - Contact - Left - ' int2str(test_pressures(c)) 'psi.xlsx'];
+        dataFileR = [Tire_name_list{tire_ind} ' - Contact - Right - ' int2str(test_pressures(c)) 'psi.xlsx']; 
         
         %Assuming I have the power, speed for both directions of wheel and drum
         %find index for closest velocity in the drum, wheel, and both tire runs
