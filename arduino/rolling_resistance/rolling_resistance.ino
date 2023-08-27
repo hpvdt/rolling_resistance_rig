@@ -12,14 +12,16 @@ but this is untested).
 const float circTire = 2.0800; //old value 1.9622; //1.994 for grand prix
 const float circDrum = 4.7900;
 
-const unsigned long debouncingTime = 5000; // Software debouncing to avoid counting noisy edges repeatedly (us after first edge until next can be counted)
+const unsigned long debouncingTime = 5000;  // Software debouncing to avoid counting noisy edges repeatedly (us after first edge until next can be counted)
 const byte pinTire = 2;
 const byte pinDrum = 3;
+const char delimiter = '\t';                // Delimited used for data printed. Originally a tab ('\t').
+const int decimalDigits = 2;                // Number of decimal points of precision. Default is 2 if unspecified for a `print` function.
 
 volatile unsigned int rotationsDrum = 0;
 volatile unsigned int rotationsTire = 0;
-volatile unsigned long messageTime = 0; // Record when most recent event occured
-volatile bool triggerMessage = false; // Has an event occured to be printed
+volatile unsigned long messageTime = 0;     // Record when most recent event occured
+volatile bool triggerMessage = false;       // Has an event occured to be printed
 volatile float velDrum = 0.0;
 volatile float velTire = 0.0;
 
@@ -35,18 +37,28 @@ void setup() {
 
 void loop() {
   if (triggerMessage == true) {
-    Serial.print(messageTime);
-    Serial.print('\t');
-    Serial.print(velDrum);
-    Serial.print('\t');
-    Serial.print(rotationsDrum);
-    Serial.print('\t');
-    Serial.print(velTire);
-    Serial.print('\t');
-    Serial.println(rotationsTire);
 
-    triggerMessage = false; // Clear flag once event printed
-  } 
+    // Copy in data into temporary variables so interrupts during the printing stages don't change data mid-message
+    // This is done in a short burst that cannot be intterupted
+    noInterrupts();
+    unsigned long tempTime = messageTime;
+    float tempVelDrum = velDrum;
+    unsigned int tempRotationsDrum = rotationsDrum;
+    float tempVelTire = velTire;
+    unsigned int tempRotationsTire = rotationsTire;
+    triggerMessage = false; // Clear flag once data is copied
+    interrupts();
+
+    Serial.print(tempTime);
+    Serial.print(delimiter);
+    Serial.print(tempVelDrum, decimalDigits);
+    Serial.print(delimiter);
+    Serial.print(tempRotationsDrum);
+    Serial.print(delimiter);
+    Serial.print(tempVelTire, decimalDigits);
+    Serial.print(delimiter);
+    Serial.println(tempRotationsTire);
+  }
 }
 
 
