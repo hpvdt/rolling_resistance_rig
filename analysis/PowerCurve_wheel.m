@@ -13,9 +13,9 @@ cd('data')
 cd('aero')
 x = true;
 % while x
-%     aeroFileL = name_wheel + ' - Separate - Left - 50psi.xlsx';
+%     aeroFileL = name_wheel + ' - Separate - Left - 50psi.csv';
 %     
-%     aeroFileR = name_wheel + ' - Separate - Right - 50psi.xlsx';
+%     aeroFileR = name_wheel + ' - Separate - Right - 50psi.csv';
 %     if(exist(aeroFileL, 'file'))
 %         dataFile_L = [dataFile_L, aeroFileL];
 %         dataFile_R = [dataFile_R, aeroFileR];
@@ -26,8 +26,8 @@ x = true;
 %     
 % end
 
-aeroFileL = [name_wheel ' - Separate - Left - ' int2str(pressure) 'psi.xlsx'];
-aeroFileR = [name_wheel ' - Separate - Right - ' int2str(pressure) 'psi.xlsx'];
+aeroFileL = [name_wheel ' - Separate - Left - ' int2str(pressure) 'psi.csv'];
+aeroFileR = [name_wheel ' - Separate - Right - ' int2str(pressure) 'psi.csv'];
 
 if(exist(aeroFileL, 'file'))
     dataFile_L = [dataFile_L, aeroFileL];

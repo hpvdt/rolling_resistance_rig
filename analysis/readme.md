@@ -16,5 +16,5 @@ The process is a partially automated but there is still some editing of the scri
 
 - [ ] Automatically derive the necessary legend entries for figures from user parameters
 - [ ] Derive permissible wheel names from data saved rather than a list in the script
-- [ ] Convert all data to CSV for easier reading by other systems, at least `aero`
+- [x] Convert all data to CSV for easier reading by other systems, at least `aero`
 - [ ] Replace `xlsread()` instances with more modern functions

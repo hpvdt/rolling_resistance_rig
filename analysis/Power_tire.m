@@ -9,7 +9,7 @@ ptAvg = 21;
 cd('data')
 cd('aero')
 
-testFile = xlsread(string(dataFile));
+testFile = readmatrix(string(dataFile));
 rawTime = testFile(:,1);
 
 if drumFlag == 1    
