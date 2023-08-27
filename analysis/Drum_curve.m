@@ -2,8 +2,6 @@
 Idrum = 6.7575;
 drum_radius = 4.709/(2*pi);
 
-% cd('CoastDown data\Drum Files')
-
 %Plots drum power curves
 
 aeroFileL1 = ['Michelin 4575r16 - Separate - Left - 60psi.xlsx'];

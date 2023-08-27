@@ -1,14 +1,13 @@
 function [ U,P ] = Power_tire( dataFile, Iwheel_avg, drum_radius, drumFlag )
-%UNTITLED Summary of this function goes here
+%Power_tire Calculates the speed, power of a dataset
 %   Detailed explanation goes here
-
-%   Calculates the speed, power of a dataset
 
 ptAvg = 21;
 
 %Import from the file
 
-cd('CoastDown data/Aero Tests')
+cd('data')
+cd('aero')
 
 testFile = xlsread(string(dataFile));
 rawTime = testFile(:,1);

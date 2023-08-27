@@ -8,7 +8,8 @@ R = (d_coin)*m_coin/(m_coin + m_wheel); %m
 x = true;
 
 i = 0;
-cd('CoastDown data/InertiaFile')
+cd('data')
+cd('inertia')
 
 while x
     

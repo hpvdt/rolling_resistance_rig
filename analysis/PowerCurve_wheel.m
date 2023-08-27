@@ -1,5 +1,5 @@
 function [ U_wheel_left, U_wheel_right, P_wheel_left, P_wheel_right, U_drum_left, U_drum_right, P_drum_left, P_drum_right ] = PowerCurve_wheel( name_wheel, Iwheel, Idrum, wheel_radius, drum_radius, pressure )
-%UNTITLED Returns the speed and power of the wheel and drum for the aero
+%PowerCurve_wheel Returns the speed and power of the wheel and drum for the aero
 %tests (in each direction)
 %   Detailed explanation goes here
 
@@ -9,7 +9,8 @@ dataFile_R = [];
 
 %Add in aero test files (with same test parameters)
 i = 0;
-cd('CoastDown data/Aero Tests')
+cd('data')
+cd('aero')
 x = true;
 % while x
 %     aeroFileL = name_wheel + ' - Separate - Left - 50psi.xlsx';

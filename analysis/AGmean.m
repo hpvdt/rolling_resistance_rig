@@ -1,5 +1,5 @@
 function [ an ] = AGmean(a0, g0)
-%UNTITLED5 Summary of this function goes here
+%AGmean Summary of this function goes here
 %   Detailed explanation goes here
 tolerance = 1E-10;
 

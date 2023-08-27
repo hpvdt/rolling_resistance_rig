@@ -14,7 +14,7 @@ There are a few folders used to sort the different components of the system.
 | --- | ---|
 | `additional documentation` | Assorted documentation about the system design |
 | `analysis` | Primarily the MATLAB files used to process the data collected |
-| `analysis/CoastDown data` | Previously collected experiment data |
+| `analysis/data` | Previously collected experiment data |
 | `arduino` | Microcontroller code used to collect data. **USE THE `rolling_resistance` SKETCH!** |
 | `hardware` | Hardware files for custom circuit boards designed for this system |
 
