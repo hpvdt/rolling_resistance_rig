@@ -25,4 +25,9 @@ A few programs are needed to fully operate the system. No additional configurati
 - **Arduino IDE** (**V 2.1.0** as of writting) for programming the microntrollers used (Arduino Nanos/Unos).
 - **KiCad 7** for the most recent board's hardware files. The previous version was prepared in EAGLE.
 - **MATLAB** for post-processing of the data collected.
-- **Excel** to store results.
+- **Excel/LibreOffice Calc** to store some results.
+
+## Future Improvements
+
+- [ ] Record procedure to determine inertia characteristics of a wheel as part of this repository
+- [ ] Improve the data processing scripts. *More information in its [readme](analysis/readme.md).*
