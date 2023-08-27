@@ -23,7 +23,7 @@ inertia_file = [];
 R_roll = [];
 Figure_name_wheel = [];
 
-[num,txt,wheelFile] = xlsread('wheelInfo.xlsx');
+wheelFile = readcell('wheelInfo.csv');
 
 %Read in parameters from all tires for the inertia calculation
 for i=2:size(wheelFile,1)
@@ -39,7 +39,7 @@ for i=2:size(wheelFile,1)
 end
 
 %Read in pressure and tire info from each test to analyze
-[a,b,test_file] = xlsread('Test_info.xlsx');
+test_file = readcell('Test_info.csv');
 test_tires = string(test_file(:,1));
 test_pressures = cell2mat(test_file(:,2:end));
 
