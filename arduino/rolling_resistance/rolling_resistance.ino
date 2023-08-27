@@ -33,6 +33,12 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt(pinDrum), drumInterrupt, RISING);
   attachInterrupt(digitalPinToInterrupt(pinTire), tireInterrupt, RISING);
+
+  // Print in order to ensure that the right circumference is input to Arduino
+  Serial.println(F("!!! BE SURE THAT YOU UPDATED 'circTire' IN ARDUINO CODE FOR TIRE UNDER TEST !!!"));
+  Serial.print(F("Current value of 'circTire' (metres): "));
+  Serial.println(circTire, 4);
+  Serial.println();
 }
 
 void loop() {
