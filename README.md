@@ -12,10 +12,10 @@ There are a few folders used to sort the different components of the system.
 
 | Folder | Purpose |
 | --- | ---|
-| `additional documentation` | Assorted documentation about the system design |
 | `analysis` | Primarily the MATLAB files used to process the data collected |
 | `analysis/data` | Previously collected experiment data |
 | `arduino` | Microcontroller code used to collect data. **USE THE `rolling_resistance` SKETCH!** |
+| `doc` | Assorted documentation about the system design |
 | `hardware` | Hardware files for custom circuit boards designed for this system |
 
 ## Software Used
