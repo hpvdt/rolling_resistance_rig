@@ -15,7 +15,7 @@ const float circDrum = 4.7900;
 const unsigned long debouncingTime = 5000;  // Software debouncing to avoid counting noisy edges repeatedly (us after first edge until next can be counted)
 const byte pinTire = 2;
 const byte pinDrum = 3;
-const char delimiter = '\t';                // Delimited used for data printed. Originally a tab ('\t').
+const char delimiter = ',';                // Delimited used for data printed. Originally a tab ('\t'), now a comma for easy creation of CSV files.
 const int decimalDigits = 2;                // Number of decimal points of precision. Default is 2 if unspecified for a `print` function.
 
 volatile unsigned int rotationsDrum = 0;
