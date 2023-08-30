@@ -78,6 +78,7 @@ void drumInterrupt() {
   velDrum = circDrum * (3600000.0 / (currentTime - prevTime)); // Grouped calculations to keep operands of similar magnitude for each step
   rotationsDrum++;
   messageTime = currentTime;
+  prevTime = currentTime;
   triggerMessage = true;
 }
 
@@ -90,5 +91,6 @@ void tireInterrupt() {
   velTire = circTire * (3600000.0 / (currentTime - prevTime));
   rotationsTire++;
   messageTime = currentTime;
+  prevTime = currentTime;
   triggerMessage = true;
 }
