@@ -6,7 +6,7 @@ The process is a partially automated but there is still some editing of the scri
 1. Upload test results in a spreadsheet to the `data` folder (if adding new data)
     - `aero` for general rolling resistance runs. The naming scheme for files here is "<Wheel/Model> - <Contact/Separate> - <Left/Right> - <Pressure/PSI>psi", e.g. *"Grandprix - Contact - Left - 100psi"*.
     - `inertia` used for inertia measurement calculations
-    - `force` is not properly understood, kept from previous code maintainer
+    - `force` is data collected from trials to see the effect of loading on the results, keeping other factors constant.
 2. Edit `Test_info.csv` with a list of wheels and pressures to be analyzed together.
     - E.g. `Vittoria Corsa Open,100` for Vittoria Corsa Open tires at 100 psi
 3. Edit `RRcalc.m` to have the right legend entries for the wheels
