@@ -9,8 +9,7 @@ dataFile_R = [];
 
 %Add in aero test files (with same test parameters)
 i = 0;
-cd('data')
-cd('aero')
+dataDirectory = ['data' filesep 'aero' filesep];
 x = true;
 % while x
 %     aeroFileL = name_wheel + ' - Separate - Left - 50psi.csv';
@@ -26,8 +25,8 @@ x = true;
 %     
 % end
 
-aeroFileL = [name_wheel ' - Separate - Left - ' int2str(pressure) 'psi.csv'];
-aeroFileR = [name_wheel ' - Separate - Right - ' int2str(pressure) 'psi.csv'];
+aeroFileL = [dataDirectory name_wheel ' - Separate - Left - ' int2str(pressure) 'psi.csv'];
+aeroFileR = [dataDirectory name_wheel ' - Separate - Right - ' int2str(pressure) 'psi.csv'];
 
 if(exist(aeroFileL, 'file'))
     dataFile_L = [dataFile_L, aeroFileL];
@@ -35,9 +34,6 @@ if(exist(aeroFileL, 'file'))
 else
     x = false;
 end
-
-cd('..');
-cd('..');
 
 U_run_left = [];
 U_run_right = [];

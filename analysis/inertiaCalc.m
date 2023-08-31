@@ -8,12 +8,11 @@ R = (d_coin)*m_coin/(m_coin + m_wheel); %m
 x = true;
 
 i = 0;
-cd('data')
-cd('inertia')
+dataDirectory = ['data' filesep 'inertia' filesep];
 
 while x
     
-    if(exist([name_wheel '_I' int2str(i+1) '.xlsx'], 'file'))
+    if(exist([dataDirectory name_wheel '_I' int2str(i+1) '.xlsx'], 'file'))
         i = i + 1;
     else
         x = false;
@@ -27,11 +26,8 @@ numSets = i;
         %Triggertime
         %triggerTime = [1,2,3,4,5,6,7];
 
-        inertiaFile = xlsread([name_wheel '_I' int2str(i) '.xlsx']);
+        inertiaFile = xlsread([dataDirectory name_wheel '_I' int2str(i) '.xlsx']);
         triggerTime = inertiaFile(:,1);
-        
-        cd('..')
-        cd('..')
 
         %Remove last point if dataset contrain even amount of points
         if mod(length(triggerTime),2) == 0

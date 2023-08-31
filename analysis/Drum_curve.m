@@ -4,17 +4,18 @@ drum_radius = 4.709/(2*pi);
 
 %Plots drum power curves
 
-aeroFileL1 = ['Michelin 4575r16 - Separate - Left - 60psi.csv'];
-aeroFileR1 = ['Michelin 4575r16 - Separate - Right - 60psi.csv'];
+aeroDataDirectory = ['data' filesep 'aero' filesep];
+aeroFileL1 = [aeroDataDirectory 'Michelin 4575r16 - Separate - Left - 60psi.csv'];
+aeroFileR1 = [aeroDataDirectory 'Michelin 4575r16 - Separate - Right - 60psi.csv'];
 
-aeroFileL2 = ['Michelin 44-406 - Separate - Left - 80psi.csv'];
-aeroFileR2 = ['Michelin 44-406 - Separate - Right - 80psi.csv'];
+aeroFileL2 = [aeroDataDirectory 'Michelin 44-406 - Separate - Left - 80psi.csv'];
+aeroFileR2 = [aeroDataDirectory 'Michelin 44-406 - Separate - Right - 80psi.csv'];
 
-aeroFileL3 = ['Green - Scorcher - Separate - Left - 80 psi.csv'];
-aeroFileR3 = ['Green - Scorcher - Separate - Left - 80 psi.csv'];
+aeroFileL3 = [aeroDataDirectory 'Greenspeed - Separate - Left - 80psi.csv'];
+aeroFileR3 = [aeroDataDirectory 'Greenspeed - Separate - Left - 80psi.csv'];
 
-% aeroFileL3 = [name_wheel ' - Separate - Left - 50psi.csv'];
-% aeroFileR3 = [name_wheel ' - Separate - Right - 50psi.csv'];
+% aeroFileL3 = [aeroDataDirectory name_wheel ' - Separate - Left - 50psi.csv'];
+% aeroFileR3 = [aeroDataDirectory name_wheel ' - Separate - Right - 50psi.csv'];
 
 drum_L = [{aeroFileL1}, {aeroFileL2}, {aeroFileL3}];
 drum_R = [{aeroFileR1}, {aeroFileR2}, {aeroFileR3}];
@@ -41,16 +42,12 @@ for i = 1:3
 
         [~,drum_ind_right] = min(abs(U_drum_right-u));
 
-        %Compute the tire power by removing aero effects of drum
-        %and wheel
+        %Compute the tire power by removing aero effects of drum and wheel
 
         power_left = P_drum_left(drum_ind_left);
         power_right = P_drum_right(drum_ind_right);
         
         totalPower = [totalPower,(power_left + power_right)/2];
-        
-        
-
     end
     
     if i == 1
@@ -64,7 +61,6 @@ for i = 1:3
     legend('November 2nd','December 5th','February 19th')
 
     hold on
-    
     
 end
 

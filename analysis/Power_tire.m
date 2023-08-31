@@ -6,9 +6,6 @@ ptAvg = 21;
 
 %Import from the file
 
-cd('data')
-cd('aero')
-
 testFile = readmatrix(string(dataFile));
 rawTime = testFile(:,1);
 
@@ -20,9 +17,6 @@ else
     rawSpeed = testFile(:,4); %km/h
     dataPoints = testFile(:,5);
 end
-
-cd('..');
-cd('..');
 
 % Remove timepoints triggered by other wheel
 time1 = 1;
