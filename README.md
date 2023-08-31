@@ -6,6 +6,8 @@ The general principle of the RRR is that there is a large drum which acts as the
 
 During this slowdown the rotational period of each part is monitored and recorded over serial to then be analyzed and derive a rolling resistance for the wheel being tested. This processing is performed after the experiment is concluded in MATLAB.
 
+The exact procedure for this process is outlined in a separate markdown file, [`test_procedure.md`](./test_procedure.md).
+
 ## Repository Organization
 
 There are a few folders used to sort the different components of the system.
