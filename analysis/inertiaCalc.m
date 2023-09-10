@@ -5,28 +5,19 @@ M = m_coin + m_wheel;       %kg
 R = (d_coin)*m_coin/(m_coin + m_wheel); %m
 
 %Open all inertia files
-x = true;
 
 i = 0;
 dataDirectory = ['data' filesep 'inertia' filesep];
 
-while x
-    
-    if(exist([dataDirectory name_wheel '_I' int2str(i+1) '.xlsx'], 'file'))
-        i = i + 1;
-    else
-        x = false;
-    end
+while exist([dataDirectory name_wheel '_I' int2str(i+1) '.xlsx'], 'file')
+    i = i + 1;
 end
 
 numSets = i;
 
     for i=1:numSets
 
-        %Triggertime
-        %triggerTime = [1,2,3,4,5,6,7];
-
-        inertiaFile = xlsread([dataDirectory name_wheel '_I' int2str(i) '.xlsx']);
+        inertiaFile = readmatrix([dataDirectory name_wheel '_I' int2str(i) '.xlsx']);
         triggerTime = inertiaFile(:,1);
 
         %Remove last point if dataset contrain even amount of points
