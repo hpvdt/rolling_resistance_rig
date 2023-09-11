@@ -1,16 +1,18 @@
-%Define intial variables
+%% User configuration
+%speed range of interest
+speed_low = 5;
+speed_high = 22;
 
-Tire_name_list = {'Michelin 4575r16','Michelin 44-406','Greenspeed','Vittoria Corsa Open','Drum','Samplewheel 29','Grandprix'};
-g = 9.80665002864; %in newtons
-
-aeroDataDirectory = ['data' filesep 'aero' filesep]; % Create path to data directory (`filesep` used to be operating system agnostic)
+%% Automated Configuration / Constants
 
 % Region of speed values to ignore due to test rig issues
 bad_speed_zone_start = 0;
 bad_speed_zone_end = 0;
 
-test_mass = ((90+35)/2.2)*g; %Newtons (Overwritten later on in loop)
+aeroDataDirectory = ['data' filesep 'aero' filesep]; % Create path to data directory (`filesep` used to be operating system agnostic)
 
+g = 9.80665002864; %in newtons
+test_mass = ((90+35)/2.2)*g; %Newtons (Overwritten later on in loop)
 
 %Read in parameters from all tires for the inertia calculation
 wheelFile = readcell('wheelInfo.csv'); % Read in all text (including headers)
@@ -31,6 +33,7 @@ test_pressures = cell2mat(test_file(:,2:end));
 
 I_wheels = [];
 
+%% CRR Collection
 figure(); % Start figure for data
 
 %For each tire and pressure specified in the test file, calculate and plot
@@ -38,7 +41,7 @@ figure(); % Start figure for data
 for i = 1:length(test_tires)
     
     %Find the index of the test tire in the tire parameter data
-    tire_ind = find(Tire_name_list == test_tires(i));
+    tire_ind = find(name_wheel == test_tires(i));
     if isempty(tire_ind)
         error("Tire '%s' not found in wheel database.", test_tires(i));
     end
@@ -75,8 +78,8 @@ for i = 1:length(test_tires)
         
         % Compute power of full coastdown
 
-        dataFileL = [aeroDataDirectory Tire_name_list{tire_ind} ' - Contact - Left - ' int2str(test_pressures(c)) ' psi.csv'];
-        dataFileR = [aeroDataDirectory Tire_name_list{tire_ind} ' - Contact - Right - ' int2str(test_pressures(c)) ' psi.csv']; 
+        dataFileL = [aeroDataDirectory char(test_tires(i)) ' - Contact - Left - ' int2str(test_pressures(c)) ' psi.csv'];
+        dataFileR = [aeroDataDirectory char(test_tires(i)) ' - Contact - Right - ' int2str(test_pressures(c)) ' psi.csv']; 
         
         %Assuming I have the power, speed for both directions of wheel and drum
         %find index for closest velocity in the drum, wheel, and both tire runs
@@ -87,11 +90,6 @@ for i = 1:length(test_tires)
         %Will contain speeds in 0.1m/s increments throughtout entire range of interest
         %Used as x-axis data in final graphs
         speed_tire = [];
-        
-        %speed range of interest
-        speed_low = 5;
-        speed_high = 22;
-        
         coefficient_tire = [];
         
         for n=floor(speed_low)*10:floor(speed_high)*10
@@ -144,7 +142,6 @@ for i = 1:length(test_tires)
             crrL = [crrL, coefficientRR_left];
             crrR = [crrR, coefficientRR_right];
             coefficient_tire = [coefficient_tire,coefficientRR];
-            
         end
 
         CRR_fulltire = [CRR_fulltire; coefficient_tire];
@@ -173,7 +170,7 @@ for i = 1:length(test_tires)
     end
 end
 
-% Adjust the figure overall
+%% Plot Adjustments
 axis([floor(speed_low), ceil(18), 0 , 5E-3]);
 
 xlabel('Velocity (m/s)', 'fontsize', 12)
