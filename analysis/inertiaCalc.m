@@ -17,12 +17,6 @@ for i=1:numSets
 
     inertiaFile = readmatrix([dataDirectory name_wheel '_I' int2str(i) '.csv']);
     triggerTime = inertiaFile(:,1);
-
-    %Remove last point if dataset contrain even amount of points
-    if mod(length(triggerTime),2) == 0
-        triggerTime = triggerTime(1:end-1);
-    end
-    triggerTime = triggerTime(1:2:end);
     
     %shift the amplitude over 1/4 period since trigger happens at theta = 0
 %     shift = (theta_1 - theta_2)/(2*length(triggerTime));
