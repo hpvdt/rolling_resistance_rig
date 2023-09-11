@@ -47,6 +47,8 @@ test_pressures = cell2mat(test_file(:,2:end));
 
 I_wheels = [];
 
+figure(); % Start figure for data
+
 %For each tire and pressure specified in the test file, calculate and plot
 %the coefficient of rolling resistance as a function of speed
 for i = 1:length(test_tires)
@@ -222,40 +224,17 @@ for i = 1:length(test_tires)
 %        
 %         CRR = [dataStart,y];
 
-%         hold on
-        if (c == 1 && i == 1)
-            figure()
-        end
-        
         plot(speed_tire,coefficient_tire);
-        
-%         plot(speed_tire,crrL);
-%         hold on
-%         plot(speed_tire,crrR);
-%         plot(speed_tire,totalPower);
-        hold on
-        
-        axis([(speed_low-1) (18) 0 5E-3]);
-        %axis([(speed_low-1) (speed_high+1)]);
-        
-        xlabel('Velocity (m/s)', 'fontsize', 12)
-        ylabel('Coefficient of Rolling Resistance', 'fontsize', 12)
-        legend('Grand Prix 4000 SII - 100 psi','Grand Prix 4000 SII - 140 psi','Vittoria Corsa Open - 100 psi')
-        %legend('Grand Prix 4000 SII - 100 psi','Grand Prix 4000 SII - 140 psi')
-        
-        %legend('Vittoria Corsa Open - 100 psi')
-        
-        %legend('100 psi','120 psi','140 psi')
-        %legend([num2str(test_mass(1)) ' N'],[num2str(test_mass(2)) ' N'],[num2str(test_mass(3)) ' N'])
-        
         hold on
 
-%         speed_tire = 3.6*speed_tire;
-% %         plot(speed_tire,CRR);
-   
-%         
 %         tire_coeffs = [tire_coeffs, coefficient_tire];
     end
 end
 
+% Adjust the figure overall
+axis([floor(speed_low) (18) 0 5E-3]);
+
+xlabel('Velocity (m/s)', 'fontsize', 12)
+ylabel('Coefficient of Rolling Resistance', 'fontsize', 12)
+legend('Grand Prix 4000 SII - 100 psi','Grand Prix 4000 SII - 140 psi','Vittoria Corsa Open - 100 psi')
 
