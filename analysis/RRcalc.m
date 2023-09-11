@@ -7,11 +7,11 @@ g = 9.80665002864; %in newtons
 
 aeroDataDirectory = ['data' filesep 'aero' filesep];
 
+% Region of speed values to ignore due to test rig issues
 bad_speed_zone_start = 0;
 bad_speed_zone_end = 0;
 
-
-test_mass = ((90+35)/2.2)*g; %Newtons
+test_mass = ((90+35)/2.2)*g; %Newtons (Overwritten later on in loop)
 
 name_wheel = [];
 full_name = [];
@@ -21,9 +21,7 @@ R_coin = [];
 r_coin = [];
 theta_1 = [];
 theta_2 = [];
-inertia_file = [];
 R_roll = [];
-Figure_name_wheel = [];
 
 wheelFile = readcell('wheelInfo.csv');
 
@@ -52,12 +50,6 @@ figure(); % Start figure for data
 %For each tire and pressure specified in the test file, calculate and plot
 %the coefficient of rolling resistance as a function of speed
 for i = 1:length(test_tires)
-
-%     if i == 1
-%         test_pressures = [100 140];
-%     else
-%         test_pressures = 100;
-%     end
  
     tire_ind = 0;
     
@@ -78,8 +70,6 @@ for i = 1:length(test_tires)
     %Testing approximate values of moment of int
     %I_wheel = 1.2*0.235^2; %m*r^2
     I_drum = 10; %0.5*m*r^2
-    
-    
 
     %find indexes of each tire in tirelist
     
@@ -98,7 +88,6 @@ for i = 1:length(test_tires)
         legend_drum = [];
         legend_wheel = [];
         legend_run = [];
-        tire_coeffs = [];
 
         %test_mass = [156.1,557.4,1114.8];
         test_mass = [557.4];
@@ -116,10 +105,6 @@ for i = 1:length(test_tires)
         
         %Assuming I have the power, speed for both directions of wheel and drum
         %find index for closest velocity in the drum, wheel, and both tire runs
-
-        if c == 3
-            hello = 7;
-        end
         
         [speed_run_left, power_run_left] = Power_tire(dataFileL, I_system, R_roll(i),0);
         [speed_run_right, power_run_right] = Power_tire(dataFileR, I_system, R_roll(i),0);
@@ -160,20 +145,18 @@ for i = 1:length(test_tires)
                 %Compute the tire power by removing aero effects of drum
                 %and wheel
                 
-                
                 total_power_left = power_run_left(run_ind_left) - P_drum_left(drum_ind_left) - P_wheel_left(wheel_ind_left);
                 total_power_right = power_run_right(run_ind_right) - P_drum_right(drum_ind_right) - P_wheel_right(wheel_ind_right);
                 
 %                 total_power_left = P_drum_left(drum_ind_left);
 %                 total_power_right = P_drum_right(drum_ind_right);
-%               
+
 %                 total_power_left = power_run_left(run_ind_left);
 %                 total_power_right = power_run_right(run_ind_right);
 
-%                 
 %                 total_power_left = P_wheel_left(wheel_ind_left);
 %                 total_power_right = P_wheel_right(wheel_ind_right);
-%              
+
                 force_left = total_power_left/u; %Newtons
                 force_right = total_power_right/u;
 
@@ -183,17 +166,11 @@ for i = 1:length(test_tires)
                 coefficientRR = (coefficientRR_left + coefficientRR_right)/2;
                              
                 %Remove outlier points
-
-                            
                 if size(coefficient_tire) > 0
-                    
                     if abs((coefficientRR - coefficient_tire(end))/coefficientRR) > 0.45 
                         coefficientRR = coefficient_tire(end);
-
                     end
-                    
                 end
-                
              end
             
             totalPower = [totalPower, (total_power_left+total_power_right)/2];
@@ -226,8 +203,6 @@ for i = 1:length(test_tires)
 
         plot(speed_tire,coefficient_tire);
         hold on
-
-%         tire_coeffs = [tire_coeffs, coefficient_tire];
     end
 end
 
