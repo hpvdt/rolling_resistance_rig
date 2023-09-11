@@ -31,6 +31,13 @@ test_file = readcell('script_config.csv');
 test_tires = string(test_file(:,1));
 test_pressures = cell2mat(test_file(:,2:end));
 
+% Get the drum moment of inertia
+drum_ind = find(name_wheel == "Drum");
+if isempty(drum_ind)
+    error("Drum information not found in wheel database! (`wheelInfo.csv`)");
+end
+I_drum = inertiaCalc(m_coin(drum_ind), m_wheel(drum_ind), R_coin(drum_ind), theta_1(drum_ind),theta_2(drum_ind),char(name_wheel(drum_ind)),r_coin(drum_ind));
+
 I_wheels = [];
 
 %% CRR Collection
@@ -43,12 +50,11 @@ for i = 1:length(test_tires)
     %Find the index of the test tire in the tire parameter data
     tire_ind = find(name_wheel == test_tires(i));
     if isempty(tire_ind)
-        error("Tire '%s' not found in wheel database.", test_tires(i));
+        error("Tire '%s' information not found in wheel database! (`wheelInfo.csv`)", test_tires(i));
     end
 
     %Calculate the mass-moment of inertia of the test tire
     I_wheel = inertiaCalc(m_coin(tire_ind),m_wheel(tire_ind), R_coin(tire_ind), theta_1(tire_ind),theta_2(tire_ind),char(name_wheel(tire_ind)),r_coin(tire_ind));
-    I_drum = inertiaCalc(m_coin(5), m_wheel(5), R_coin(5), theta_1(5),theta_2(5),char(name_wheel(5)),r_coin(5)); %Drum data is the 5th entry in 
     %I_wheel = 0.05; 
     I_wheels = [I_wheels, I_wheel];
     
