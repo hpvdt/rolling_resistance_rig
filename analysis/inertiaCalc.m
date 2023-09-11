@@ -9,13 +9,13 @@ R = (d_coin)*m_coin/(m_coin + m_wheel); %m
 numSets = 0;
 dataDirectory = ['data' filesep 'inertia' filesep];
 
-while exist([dataDirectory name_wheel '_I' int2str(i+1) '.xlsx'], 'file')
+while exist([dataDirectory name_wheel '_I' int2str(numSets+1) '.csv'], 'file')
     numSets = numSets + 1;
 end
 
 for i=1:numSets
 
-    inertiaFile = readmatrix([dataDirectory name_wheel '_I' int2str(i) '.xlsx']);
+    inertiaFile = readmatrix([dataDirectory name_wheel '_I' int2str(i) '.csv']);
     triggerTime = inertiaFile(:,1);
 
     %Remove last point if dataset contrain even amount of points
