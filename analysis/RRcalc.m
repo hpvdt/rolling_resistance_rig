@@ -1,7 +1,7 @@
 %% User configuration
 %speed range of interest
 speed_low = 5;
-speed_high = 22;
+speed_high = 18;
 
 %% Automated Configuration / Constants
 
@@ -71,6 +71,9 @@ for i = 1:length(test_tires)
     CRR_fulltire = [];
     len = size(test_pressures);
     for c = 1:len(2)
+        % We don't seem to properly sift through the pressures for wheels
+        % and assume that we're going to have the same pressures for all
+        % wheels being actively compared
         
         [U_wheel_left, U_wheel_right, P_wheel_left, P_wheel_right, U_drum_left, U_drum_right, P_drum_left, P_drum_right] = PowerCurve_wheel(name_wheel{tire_ind}, I_wheel, I_drum, R_roll(tire_ind),0.76, test_pressures(c));
 
@@ -171,15 +174,14 @@ for i = 1:length(test_tires)
 %        
 %         CRR = [dataStart,y];
 
-        plot(speed_tire,coefficient_tire);
+        plot(speed_tire,coefficient_tire, 'DisplayName', [char(test_tires(i)) ' - ' int2str(test_pressures(c)) ' psi']);
         hold on
     end
 end
 
 %% Plot Adjustments
-axis([floor(speed_low), ceil(18), 0 , 5E-3]);
+axis([floor(speed_low), ceil(speed_high), 0 , inf]);
 
 xlabel('Velocity (m/s)', 'fontsize', 12)
 ylabel('Coefficient of Rolling Resistance', 'fontsize', 12)
-legend('Grand Prix 4000 SII - 100 psi','Grand Prix 4000 SII - 140 psi','Vittoria Corsa Open - 100 psi')
-
+legend('Location','southeast') % Labels are assumed to be already assigned to plots using 'DisplayName'
