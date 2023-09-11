@@ -25,7 +25,7 @@ theta_1 = pi/180*cell2mat(wheelFile(2:end,8));
 theta_2 = pi/180*cell2mat(wheelFile(2:end,9));
 
 %Read in pressure and tire info from each test to analyze
-test_file = readcell('Test_info.csv');
+test_file = readcell('script_config.csv');
 test_tires = string(test_file(:,1));
 test_pressures = cell2mat(test_file(:,2:end));
 
