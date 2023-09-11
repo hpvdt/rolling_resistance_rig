@@ -14,8 +14,8 @@ drum_R(1) = {[aeroDataDirectory 'Michelin 4575r16 - Separate - Right - 60 psi.cs
 drum_L(2) = {[aeroDataDirectory 'Michelin 44-406 - Separate - Left - 80 psi.csv']};
 drum_R(2) = {[aeroDataDirectory 'Michelin 44-406 - Separate - Right - 80 psi.csv']};
 
-drum_L(3) = {[aeroDataDirectory 'Greenspeed - Separate - Left - 80 psi.csv']};
-drum_R(3) = {[aeroDataDirectory 'Greenspeed - Separate - Left - 80 psi.csv']};
+drum_L(3) = {[aeroDataDirectory 'Greenspeed Scorcher - Separate - Left - 80 psi.csv']};
+drum_R(3) = {[aeroDataDirectory 'Greenspeed Scorcher - Separate - Left - 80 psi.csv']};
 
 % drum_L(3) = [aeroDataDirectory name_wheel ' - Separate - Left - 50 psi.csv'];
 % drum_R(3) = [aeroDataDirectory name_wheel ' - Separate - Right - 50 psi.csv'];
