@@ -1,11 +1,9 @@
-%Import stuff
-
 %Define intial variables
 
 Tire_name_list = {'Michelin 4575r16','Michelin 44-406','Greenspeed','Vittoria Corsa Open','Drum','Samplewheel 29','Grandprix'};
 g = 9.80665002864; %in newtons
 
-aeroDataDirectory = ['data' filesep 'aero' filesep];
+aeroDataDirectory = ['data' filesep 'aero' filesep]; % Create path to data directory (`filesep` used to be operating system agnostic)
 
 % Region of speed values to ignore due to test rig issues
 bad_speed_zone_start = 0;
@@ -13,30 +11,18 @@ bad_speed_zone_end = 0;
 
 test_mass = ((90+35)/2.2)*g; %Newtons (Overwritten later on in loop)
 
-name_wheel = [];
-full_name = [];
-m_wheel = [];
-m_coin = [];
-R_coin = [];
-r_coin = [];
-theta_1 = [];
-theta_2 = [];
-R_roll = [];
-
-wheelFile = readcell('wheelInfo.csv');
 
 %Read in parameters from all tires for the inertia calculation
-for i=2:size(wheelFile,1)
-    name_wheel = [name_wheel,wheelFile(i,1)];
-    full_name = [full_name, wheelFile(i,2)];
-    m_wheel = [m_wheel, cell2mat(wheelFile(i,3))];
-    m_coin = [m_coin, cell2mat(wheelFile(i,4))];
-    R_coin = [R_coin, cell2mat(wheelFile(i,5))];
-    r_coin = [r_coin, cell2mat(wheelFile(i,6))];
-    R_roll = [R_roll, cell2mat(wheelFile(i,7))];
-    theta_1 = [theta_1, pi/180*cell2mat(wheelFile(i,8))];
-    theta_2 = [theta_2, pi/180*cell2mat(wheelFile(i,9))];
-end
+wheelFile = readcell('wheelInfo.csv'); % Read in all text (including headers)
+name_wheel = wheelFile(2:end,1);
+full_name = wheelFile(2:end,2);
+m_wheel = cell2mat(wheelFile(2:end,3));
+m_coin = cell2mat(wheelFile(2:end,4));
+R_coin = cell2mat(wheelFile(2:end,5));
+r_coin = cell2mat(wheelFile(2:end,6));
+R_roll = cell2mat(wheelFile(2:end,7));
+theta_1 = pi/180*cell2mat(wheelFile(2:end,8));
+theta_2 = pi/180*cell2mat(wheelFile(2:end,9));
 
 %Read in pressure and tire info from each test to analyze
 test_file = readcell('Test_info.csv');
@@ -50,17 +36,13 @@ figure(); % Start figure for data
 %For each tire and pressure specified in the test file, calculate and plot
 %the coefficient of rolling resistance as a function of speed
 for i = 1:length(test_tires)
- 
-    tire_ind = 0;
     
     %Find the index of the test tire in the tire parameter data
-    for ind = 1:length(Tire_name_list)
-        if Tire_name_list(ind) == test_tires(i)
-            tire_ind = ind;
-        end
+    tire_ind = find(Tire_name_list == test_tires(i));
+    if isempty(tire_ind)
+        error("Tire '%s' not found in wheel database.", test_tires(i));
     end
-    
-    
+
     %Calculate the mass-moment of inertia of the test tire
     I_wheel = inertiaCalc(m_coin(tire_ind),m_wheel(tire_ind), R_coin(tire_ind), theta_1(tire_ind),theta_2(tire_ind),char(name_wheel(tire_ind)),r_coin(tire_ind));
     I_drum = inertiaCalc(m_coin(5), m_wheel(5), R_coin(5), theta_1(5),theta_2(5),char(name_wheel(5)),r_coin(5)); %Drum data is the 5th entry in 
@@ -70,8 +52,6 @@ for i = 1:length(test_tires)
     %Testing approximate values of moment of int
     %I_wheel = 1.2*0.235^2; %m*r^2
     I_drum = 10; %0.5*m*r^2
-
-    %find indexes of each tire in tirelist
     
     %For each test with a given tire, compute the coefficient of rolling
     %resistance vs. speed
@@ -84,15 +64,10 @@ for i = 1:length(test_tires)
     for c = 1:len(2)
         
         [U_wheel_left, U_wheel_right, P_wheel_left, P_wheel_right, U_drum_left, U_drum_right, P_drum_left, P_drum_right] = PowerCurve_wheel(name_wheel{tire_ind}, I_wheel, I_drum, R_roll(tire_ind),0.76, test_pressures(c));
-        
-        legend_drum = [];
-        legend_wheel = [];
-        legend_run = [];
 
         %test_mass = [156.1,557.4,1114.8];
         test_mass = [557.4];
-        
-        
+
         %Find Inertia of entire system 
         wheelCirc = 1.497; %m
         drumCirc = 4.709; %m
@@ -116,14 +91,6 @@ for i = 1:length(test_tires)
         %speed range of interest
         speed_low = 5;
         speed_high = 22;
-
-%         force_tire_run_left = [];
-%         coeficient_tire_run_left = [];
-%         Power_tire_run_right = [];
-%         speed_tire_run_right = [];
-%         force_tire_run_right = [];
-% 
-%         force_tire = [];
         
         coefficient_tire = [];
         
@@ -207,7 +174,7 @@ for i = 1:length(test_tires)
 end
 
 % Adjust the figure overall
-axis([floor(speed_low) (18) 0 5E-3]);
+axis([floor(speed_low), ceil(18), 0 , 5E-3]);
 
 xlabel('Velocity (m/s)', 'fontsize', 12)
 ylabel('Coefficient of Rolling Resistance', 'fontsize', 12)
