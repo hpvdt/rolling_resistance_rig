@@ -1,6 +1,6 @@
 # Summary of Directories
 
-- `aero` for general rolling resistance runs, each wheel configuration needs four trials listed below. The naming scheme for files here is "<Wheel/Model> - <Contact/Separate> - <Left/Right> - <Pressure/PSI>psi", e.g. *"Grandprix - Contact - Left - 100psi"*.
+- `aero` for general rolling resistance runs, each wheel configuration needs four trials listed below. The naming scheme for files here is "<Wheel/Model> - <Contact/Separate> - <Left/Right> - <Pressure/PSI> psi", e.g. *"Grandprix - Contact - Left - 100 psi"*.
   - Contact coast down - drum spun right
   - Separated coast down - drum spun right
   - Contact coast down - drum spun left

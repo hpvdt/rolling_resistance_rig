@@ -4,7 +4,7 @@ These MATLAB scripts are responsible for converting the test results into rollin
 
 The process is a partially automated but there is still some editing of the scripts needed for nice outputs. The basic operation process is:
 1. Upload test results in a spreadsheet to the `data` folder (if adding new data)
-    - `aero` for general rolling resistance runs. The naming scheme for files here is "<Wheel/Model> - <Contact/Separate> - <Left/Right> - <Pressure/PSI>psi", e.g. *"Grandprix - Contact - Left - 100psi"*.
+    - `aero` for general rolling resistance runs. The naming scheme for files here is "<Wheel/Model> - <Contact/Separate> - <Left/Right> - <Pressure/PSI> psi", e.g. *"Grandprix - Contact - Left - 100 psi"*.
     - `inertia` used for inertia measurement calculations
     - `force` is data collected from trials to see the effect of loading on the results, keeping other factors constant.
 2. Edit `script_config.csv` with a list of wheels and pressures to be analyzed together.

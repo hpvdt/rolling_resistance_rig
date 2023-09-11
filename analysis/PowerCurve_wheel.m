@@ -25,8 +25,8 @@ x = true;
 %     
 % end
 
-aeroFileL = [dataDirectory name_wheel ' - Separate - Left - ' int2str(pressure) 'psi.csv'];
-aeroFileR = [dataDirectory name_wheel ' - Separate - Right - ' int2str(pressure) 'psi.csv'];
+aeroFileL = [dataDirectory name_wheel ' - Separate - Left - ' int2str(pressure) ' psi.csv'];
+aeroFileR = [dataDirectory name_wheel ' - Separate - Right - ' int2str(pressure) ' psi.csv'];
 
 if(exist(aeroFileL, 'file'))
     dataFile_L = [dataFile_L, aeroFileL];
