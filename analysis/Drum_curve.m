@@ -57,8 +57,7 @@ for i = 1:3
 end
 
 % Dress up the figure at the end
+axis([0, inf, 0, inf])
 xlabel('Velocity (m/s)', 'fontsize', 12)
-xlim([0,inf])
 ylabel('Power (W)', 'fontsize', 12)
-ylim([0,inf])
 legend('November 2nd','December 5th','February 19th', 'Location','northwest')

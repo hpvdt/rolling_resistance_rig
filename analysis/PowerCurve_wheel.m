@@ -1,7 +1,26 @@
 function [ U_wheel_left, U_wheel_right, P_wheel_left, P_wheel_right, U_drum_left, U_drum_right, P_drum_left, P_drum_right ] = PowerCurve_wheel( name_wheel, Iwheel, Idrum, wheel_radius, drum_radius, pressure )
-%PowerCurve_wheel Returns the speed and power of the wheel and drum for the aero
-%tests (in each direction)
-%   Detailed explanation goes here
+%PowerCurve_wheel Returns the speed and power of the wheel and drum for the 
+%aero tests (in each direction)
+%   Goes through and collects the data for wheels as desired to provide
+%   consistent data for all wheels
+%
+% Inputs:
+%   name_wheel    - Test wheel name
+%   Iwheel        - Moment of inertia for the wheel (kg-m^2)
+%   Idrum         - Moment of inertia for the drum  (kg-m^2)
+%   wheel_radius  - Radius of the wheel             (m)
+%   drum_radius   - Radius of the drum              (m)
+%   pressure      - Wheel pressure                  (psi)
+%
+% Outputs:
+%   U_wheel_left  - Speed of the wheel going left   (m/s)
+%   U_wheel_right - Speed of the wheel going right  (m/s)
+%   P_wheel_left  - Power of the wheel going left   (W)
+%   P_wheel_right - Power of the wheel going right  (W)
+%   U_drum_left   - Speed of the drum going left    (m/s)
+%   U_drum_right  - Speed of the drum going right   (m/s)
+%   P_drum_left   - Power of the drum going left    (W)
+%   P_drum_right  - Power of the drum going right   (W)
 
 dataFile_L = [];
 dataFile_R = [];

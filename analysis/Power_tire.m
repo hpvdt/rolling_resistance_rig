@@ -1,6 +1,14 @@
 function [ U,P ] = Power_tire( dataFile, Iwheel_avg, drum_radius, drum_flag )
 %Power_tire Calculates the speed, power of a dataset
-%   Detailed explanation goes here
+% Inputs:
+%   dataFile    - Data file for a given wheel
+%   Iwheel_avg  - Average wheel moment of inertia   (kg-m^2)
+%   drum_radius - Radius of testing drum            (m)
+%   drum_flag   - Is the power being found for the drum (1) or wheel (0)
+%
+% Outputs:
+%   U - Wheel speed                 (m/s)
+%   P - Wheel decceleration power   (W)
 
 ptAvg = 21;
 

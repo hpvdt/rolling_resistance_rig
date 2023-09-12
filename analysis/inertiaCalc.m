@@ -1,5 +1,20 @@
-function [ Iwheel ] = inertiaCalc( m_coin, m_wheel, R_coin, theta_1, theta_2, name_wheel,d_coin)
-%Calculates the moment of intertia of the wheel or the drum
+function [ Iwheel ] = inertiaCalc( m_coin, m_wheel, r_coin, theta_1, theta_2, name_wheel, d_coin)
+%inertiaCalc Calculates the moment of intertia of the wheel or the drum
+%   NOTE: Likely to be soon depreciated due to a revision to the inertia
+%   measuring process
+%
+% Inputs:
+%   m_coin      - Mass of test mass attached to wheel               (kg)
+%   m_wheel     - Mass of wheel (without test mass)                 (kg)
+%   r_coin      - Radius where test mass was located                (m)
+%   theta1      - Rotational speed at the start of the test period  (rad/s)
+%   theta2      - Rotational speed at the end of the test period    (rad/s)
+%   name_wheel  - Name of the wheel being examined
+%   d_coin      - Diameter of test mass location on the wheel       (m)
+%
+% Outputs:
+%   Iwheel      - Moment of inertia for the wheel (kg-m^2)
+
 I_coin = m_coin*(d_coin^2);     %kg-m^2
 M = m_coin + m_wheel;       %kg
 R = (d_coin)*m_coin/(m_coin + m_wheel); %m
