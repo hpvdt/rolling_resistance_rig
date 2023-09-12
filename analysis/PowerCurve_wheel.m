@@ -3,36 +3,16 @@ function [ U_wheel_left, U_wheel_right, P_wheel_left, P_wheel_right, U_drum_left
 %tests (in each direction)
 %   Detailed explanation goes here
 
-
 dataFile_L = [];
 dataFile_R = [];
 
 %Add in aero test files (with same test parameters)
-i = 0;
 dataDirectory = ['data' filesep 'aero' filesep];
-x = true;
-% while x
-%     aeroFileL = name_wheel + ' - Separate - Left - 50psi.csv';
-%     
-%     aeroFileR = name_wheel + ' - Separate - Right - 50psi.csv';
-%     if(exist(aeroFileL, 'file'))
-%         dataFile_L = [dataFile_L, aeroFileL];
-%         dataFile_R = [dataFile_R, aeroFileR];
-%         i = i + 1;
-%     else
-%         x = false;
-%     end
-%     
-% end
-
 aeroFileL = [dataDirectory name_wheel ' - Separate - Left - ' int2str(pressure) ' psi.csv'];
 aeroFileR = [dataDirectory name_wheel ' - Separate - Right - ' int2str(pressure) ' psi.csv'];
-
 if(exist(aeroFileL, 'file'))
     dataFile_L = [dataFile_L, aeroFileL];
     dataFile_R = [dataFile_R, aeroFileR];
-else
-    x = false;
 end
 
 U_run_left = [];
@@ -129,12 +109,6 @@ P_run_right = [];
 %     
 %     power_wheel_right = [power_wheel_right, mean(power_local_right)];
 %     speed_wheel_right = [speed_wheel_right, speed];
-%     
+% end
 end
-
-
-
-
-
-
 
