@@ -1,11 +1,11 @@
 %% User configuration
-%speed range of interest
+%speed range of interest in m/s
 speed_low = 5;
 speed_high = 18;
 
 %% Automated Configuration / Constants
 
-% Region of speed values to ignore due to test rig issues
+% Region of speed values to ignore due to test rig issues (resonance)
 bad_speed_zone_start = 0;
 bad_speed_zone_end = 0;
 
@@ -23,8 +23,8 @@ m_coin = cell2mat(wheelFile(2:end,4));
 R_coin = cell2mat(wheelFile(2:end,5));
 r_coin = cell2mat(wheelFile(2:end,6));
 R_roll = cell2mat(wheelFile(2:end,7));
-theta_1 = pi/180*cell2mat(wheelFile(2:end,8));
-theta_2 = pi/180*cell2mat(wheelFile(2:end,9));
+theta_1 = cell2mat(wheelFile(2:end,8));
+theta_2 = cell2mat(wheelFile(2:end,9)); %Remove these things
 
 %Read in pressure and tire info from each test to analyze
 test_file = readcell('script_config.csv');
@@ -36,11 +36,11 @@ drum_ind = find(name_wheel == "Drum");
 if isempty(drum_ind)
     error("Drum information not found in wheel database! (`wheelInfo.csv`)");
 end
-I_drum = inertiaCalc(m_coin(drum_ind), m_wheel(drum_ind), R_coin(drum_ind), theta_1(drum_ind),theta_2(drum_ind),char(name_wheel(drum_ind)),r_coin(drum_ind));
+I_drum = inertiaCalc(m_coin(drum_ind), m_wheel(drum_ind), r_coin(drum_ind), theta_1(drum_ind),char(name_wheel(drum_ind)));
 
 I_wheels = [];
 
-%% CRR Collection
+%% CRR Collection 
 figure(); % Start figure for data
 
 %For each tire and pressure specified in the test file, calculate and plot
@@ -54,7 +54,7 @@ for i = 1:length(test_tires)
     end
 
     %Calculate the mass-moment of inertia of the test tire
-    I_wheel = inertiaCalc(m_coin(tire_ind),m_wheel(tire_ind), R_coin(tire_ind), theta_1(tire_ind),theta_2(tire_ind),char(name_wheel(tire_ind)),r_coin(tire_ind));
+    I_wheel = inertiaCalc(m_coin(tire_ind),m_wheel(tire_ind), r_coin(tire_ind), theta_1(tire_ind),char(name_wheel(tire_ind)));
     %I_wheel = 0.05; 
     I_wheels = [I_wheels, I_wheel];
     
