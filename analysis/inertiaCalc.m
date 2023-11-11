@@ -1,13 +1,11 @@
-function [ Iwheel ] = inertiaCalc( m_coin, m_wheel, d_coin, theta_deg, name_wheel)
+function [ Iwheel ] = inertiaCalc( m_coin, d_coin, theta_deg, name_wheel)
 %inertiaCalc Calculates the moment of intertia of the wheel or the drum
-%   NOTE: Likely to be soon depreciated due to a revision to the inertia
-%   measuring process
+%   
 %
 % Inputs:
 %   m_coin      - Mass of rotation measuring magnet attached to wheel               (kg)
-%   m_wheel     - Mass of wheel (without test mass)                 (kg)
 %   d_coin      - Radius where magnet test mass was located                (m)
-%   theta_deg      - starting angle of the pendulum         (deg)
+%   theta_deg      - starting angle of the test mass on the wheel         (deg)
 %   name_wheel  - Name of the wheel being examined
 %
 % Outputs:
@@ -32,12 +30,11 @@ end
 
 for i=1:numSets
     inertiaFile = readmatrix([dataDirectory name_wheel '_I' int2str(i) '.csv']);
-    triggerTime = inertiaFile(:,1);%vector 
+    triggerTime = inertiaFile(:,1);%vector for each time magnet passes sensor
 
     times = diff(triggerTime)/1000000.0; %s
     Tavg = mean(times);
-    %beta = -log(theta_2/theta_1)/(triggerTime(end-1) - triggerTime(1));
-    %beta is unused damping stuff
+    %beta = -log(theta_2/theta_1)/(triggerTime(end-1) - triggerTime(1)); %beta is unused damping stuff
 
     %Calculate average period using period of swing
 
