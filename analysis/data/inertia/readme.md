@@ -1,4 +1,4 @@
-## Inertia Test Procedure
+# Inertia Test Procedure
 
 Add washers (m_coin) to wheel spoke and let wheel rotate like a pendulum.
 
